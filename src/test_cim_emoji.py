@@ -1,5 +1,4 @@
 import unittest
-#sys.path.insert(1, '../src')
 from cim_emoji import CIMEmoji as cim
 
 class TestEmojiMethods(unittest.TestCase):
@@ -37,6 +36,6 @@ class TestEmojiMethods(unittest.TestCase):
         pos = cim().find_emoji_collocation(test_string, '😊', direction="before")
         self.assertEqual(["We", "all"], pos)
 
-        
+
 if __name__ == '__main__':
     unittest.main()
