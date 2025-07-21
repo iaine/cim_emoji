@@ -32,9 +32,9 @@ class TestEmojiMethods(unittest.TestCase):
         self.assertEqual(["We", "all"], pos)
 
     def test_emoji_collocation_emojis(self):
-        test_string = 'We 😊 want 😅 to 😏 have all 😊 cake'
-        pos = cim().find_emoji_collocation(test_string, '😊', direction="before")
-        self.assertEqual(["We", "all"], pos)
+        test_string = 'We 😊 😊 want 😅 to 😏 have all 😊 cake'
+        pos = cim().find_emoji_collocation(test_string, '😊')
+        self.assertEqual(["😊", "want", "cake"], pos)
 
 if __name__ == '__main__':
     unittest.main()
