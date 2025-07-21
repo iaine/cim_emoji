@@ -26,5 +26,10 @@ class TestEmojiMethods(unittest.TestCase):
         test_string = 'We 😊 want 😅 to 😏 extract 😁 these 😀 emojis '
         pos = cim().find_emoji_collocation(test_string, '😊', direction="before")
         self.assertEqual(["We"], pos)
+
+    def test_emoji_collocation_many(self):
+        test_string = 'We 😊 want 😅 to 😏 have all 😊 cake'
+        pos = cim().find_emoji_collocation(test_string, '😊')
+        self.assertEqual(["want", "cake"], pos)
 if __name__ == '__main__':
     unittest.main()
