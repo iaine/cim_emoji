@@ -4,7 +4,7 @@ Functions to read emoji
 import json
 import re
 
-from helpers import CIMEmojiHelpers
+from .helpers import CIMEmojiHelpers
 
 class CIMEmoji():
 
