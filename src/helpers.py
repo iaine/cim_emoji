@@ -23,7 +23,7 @@ class CIMEmojiHelpers():
         '''
         Helper to load into memory
         '''
-        with open("./src/codes.json", "r") as f:
+        with open("./codes.json", "r") as f:
             return json.loads(f.read())
         
     def _create_regex_string (self, codes):

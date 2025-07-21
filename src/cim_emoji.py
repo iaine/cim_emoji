@@ -30,7 +30,7 @@ class CIMEmoji():
         '''
         Find emoji by pattern in string
         '''
-        return {f: self.codes[f] for f in set(self.patterns.findall(text_string)) if codes[f] == emojicode}
+        return {f: self.codes[f] for f in set(self.patterns.findall(text_string)) if self.codes[f] == emojicode}
 
     def find_emoji_collocation (self, text_string, emojicode, direction="after"):
         '''
@@ -38,11 +38,15 @@ class CIMEmoji():
         '''
         found = []
         list_of_words = text_string.split()
+        patter = re.compile(emojicode, re.UNICODE)
         if direction == "before":
-            #[m.start() for m in re.finditer(emoji, text_string)]
-            found.append(list_of_words[list_of_words.index(emojicode) - 1])
+            #locs = [m for m in patter.finditer(text_string)]
+            #print(locs)
+            found = [list_of_words[k-1] for k in range(len(list_of_words)) if list_of_words[k] == emojicode]
+            #found.append(list_of_words[list_of_words.index(emojicode) - 1])
         else:
-            found.append(list_of_words[list_of_words.index(emojicode) + 1])
+            #found.append(list_of_words[list_of_words.index(emojicode) + 1])
+            found = [list_of_words[k+1] for k in range(len(list_of_words)) if list_of_words[k] == emojicode]
 
         return found
     
