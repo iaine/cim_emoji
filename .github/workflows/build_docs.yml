@@ -5,7 +5,7 @@ on:
       - main
       - dev
     paths:
-      - 'docs/**'
+      - 'docs/**/**'
       - 'mkdocs.yml'
 permissions:
   contents: write
