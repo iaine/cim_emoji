@@ -38,14 +38,11 @@ class CIMEmoji():
         '''
         found = []
         list_of_words = text_string.split()
-        patter = re.compile(emojicode, re.UNICODE)
+
         if direction == "before":
-            #locs = [m for m in patter.finditer(text_string)]
-            #print(locs)
+            #found=[m.start() for m in re.finditer(emojicode+'\s+\w+', 'test 😊 test 😊')]
             found = [list_of_words[k-1] for k in range(len(list_of_words)) if list_of_words[k] == emojicode]
-            #found.append(list_of_words[list_of_words.index(emojicode) - 1])
         else:
-            #found.append(list_of_words[list_of_words.index(emojicode) + 1])
             found = [list_of_words[k+1] for k in range(len(list_of_words)) if list_of_words[k] == emojicode]
 
         return found

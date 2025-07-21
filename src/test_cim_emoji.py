@@ -11,11 +11,6 @@ class TestEmojiMethods(unittest.TestCase):
         emojis = cim().find_all_emoji (test_string)
         self.assertEqual({'😅': 'grinning face with sweat', '😊': 'smiling face with smiling eyes'}, emojis)
 
-    #def test_string_find_emoji_position(self):
-    #    test_string = 'We 😊 want 😅 to 😏 extract 😁 these 😀 emojis '
-    #    emojis = cim().find_all_emoji(test_string)
-    #    self.assertEqual({2,5,7,8,9}, emojis)
-
     def test_emoji_collocation(self):
         test_string = 'We 😊 want 😅 to 😏 extract 😁 these 😀 emojis '
         pos = cim().find_emoji_collocation(test_string, '😊')
@@ -36,6 +31,10 @@ class TestEmojiMethods(unittest.TestCase):
         pos = cim().find_emoji_collocation(test_string, '😊', direction="before")
         self.assertEqual(["We", "all"], pos)
 
+    def test_emoji_collocation_emojis(self):
+        test_string = 'We 😊 want 😅 to 😏 have all 😊 cake'
+        pos = cim().find_emoji_collocation(test_string, '😊', direction="before")
+        self.assertEqual(["We", "all"], pos)
 
 if __name__ == '__main__':
     unittest.main()
