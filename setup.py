@@ -8,5 +8,5 @@ setup(name='CIMEmoji',
       author='Iain Emsley',
       author_email='iain.emsley@warwick.ac.uk',
       url='',
-      packages=[],
+      packages=['CIMEmoji'],
      )
