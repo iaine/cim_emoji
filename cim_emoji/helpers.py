@@ -6,7 +6,7 @@ import re
 import ssl
 context = ssl._create_unverified_context()
 
-from exception import CIMException
+from .exception import CIMException
 
 class CIMEmojiHelpers():
 
@@ -62,7 +62,7 @@ class CIMEmojiHelpers():
         with open("./codes.json", "w") as f:
             json.dump(codes, f, separators=(",", ":"))
 
-    def download(version=""):
+    def download(version="", store="true"):
         """
         Download the correct chart
         """
@@ -88,4 +88,7 @@ class CIMEmojiHelpers():
         for line in openurl:
             code = self.parse_file(line.decode('utf-8'), code)
 
-        _write_data(code)
+        if store:
+            _write_data(code)
+        else:
+            return code
