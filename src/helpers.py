@@ -11,7 +11,7 @@ from exception import CIMException
 class CIMEmojiHelpers():
 
 
-    URL = "https://unicode.org/Public/draft/emoji/emoji-test.txt"
+    URL = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
 
     VERSION_URL="https://unicode.org/Public/emoji/{}/emoji-test.txt"
 
