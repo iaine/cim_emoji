@@ -1,9 +1,12 @@
 import json
 import urllib.request
+from urllib.error import URLError, HTTPError
 import re
 #fix context
 import ssl
 context = ssl._create_unverified_context()
+
+from exception import CIMException
 
 class CIMEmojiHelpers():
 
@@ -69,7 +72,20 @@ class CIMEmojiHelpers():
             target_url = VERSION_URL.format(VERSION)
 
         code={}
-        for line in urllib.request.urlopen(target_url, context=context):
+        try:
+            openurl = urllib.request.urlopen(target_url, context=context)
+        except URLError:
+            if version != "":
+                CIMException("{} could not be opened ".format(str(target_url)))
+            else:
+                CIMException(str(URLError))
+        except HTTPError:
+            if version != "":
+                CIMException("{} could not be opened {}".format(str(target_url), openurl.code))
+            else:
+                CIMException(str(URLError))
+
+        for line in openurl:
             code = self.parse_file(line.decode('utf-8'), code)
 
         _write_data(code)
