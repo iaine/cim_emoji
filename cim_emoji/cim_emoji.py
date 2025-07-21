@@ -47,3 +47,11 @@ class CIMEmoji():
 
         return found
     
+    def compare_emoji_lists(version1, version2):
+        '''
+            Comparing lists of emojis
+        '''
+        first = CIMEmojiHelpers.download(version1)
+        second = CIMEmojiHelpers.download(version2)
+
+        shared_items = {k: first[k] for k in first if k in second and first[k] != second[k]}
