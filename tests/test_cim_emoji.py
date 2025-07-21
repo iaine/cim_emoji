@@ -1,5 +1,5 @@
 import unittest
-from cim_emoji import CIMEmoji as cim
+from cim_emoji.cim_emoji import CIMEmoji as cim
 
 class TestEmojiMethods(unittest.TestCase):
 
