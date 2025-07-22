@@ -20,7 +20,7 @@ Emojis should present a dictionary along the lines of:
 
 ### Collocations with Emojis
 
-find_emoji_collocation() has a paramter called direction. This is set to "after" but can be set to "before" to search before the emoji. 
+find_emoji_collocation() has a parameter called direction. This is set to "after" but can be set to "before" to search before the emoji ```find_emoji_collocation(test_string, '😊', direction="before")```. 
 
 ##### Please note: very much in development
 
@@ -42,4 +42,4 @@ While the code focuses on the current dataset, it is possible to override this t
 version=16.0
 download(version)
 ```
-This will replace the existing codes for use. 
+This will replace the existing codes for use within the library. 
