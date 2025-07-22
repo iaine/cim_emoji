@@ -49,14 +49,3 @@ class CIMEmoji():
                 if list_of_words[k] == emojicode]
 
         return found
-
-    def compare_emoji_lists(self, version1, version2):
-        '''
-            Comparing lists of emojis
-        '''
-        #first = CIMEmojiHelpers.download(version1)
-        #second = CIMEmojiHelpers.download(version2)
-
-        #shared_items = {k: first[k] for k in first if k in second and first[k] != second[k]}
-
-        return 3

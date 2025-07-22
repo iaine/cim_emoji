@@ -75,7 +75,7 @@ class CIMEmojiHelpers():
         with open(self.codes_cache / "codes.json", "w", encoding="utf-8") as f:
             json.dump(codes, f, separators=(",", ":"))
 
-    def download(self, version="", store="true"):
+    def download(self, version=""):
         """
         Download the correct chart
         """
@@ -102,7 +102,4 @@ class CIMEmojiHelpers():
         for line in openurl:
             code = self.parse_file(line.decode('utf-8'), code)
 
-        if store:
-            self._write_data(code)
-        else:
-            return code
+        return code
