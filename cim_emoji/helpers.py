@@ -45,7 +45,7 @@ class CIMEmojiHelpers():
             codes, desc = data.split(';', 1)
             _, desc = desc.split('#', 1)
             desc = desc.split(" ", 3)[-1]
-            #yield(codes.strip(), desc.strip())
+
             if ".." in codes.strip():
                 for cp in self.parse_unicode_range(codes):
                     code[cp] = desc.replace("\n","")
