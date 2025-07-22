@@ -1,6 +1,7 @@
 import json
 import urllib.request
 from urllib.error import URLError, HTTPError
+import os
 import re
 #fix context
 import ssl
@@ -23,7 +24,8 @@ class CIMEmojiHelpers():
         '''
         Helper to load into memory
         '''
-        with open("./codes.json", "r") as f:
+        codes_cache = pathlib.Path(__file__).parent.parent.resolve() / "cim_emoji"
+        with open(codes_cache + "/codes.json", "r") as f:
             return json.loads(f.read())
         
     def _create_regex_string (self, codes):
