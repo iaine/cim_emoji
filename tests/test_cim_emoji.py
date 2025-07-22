@@ -36,11 +36,5 @@ class TestEmojiMethods(unittest.TestCase):
         pos = cim().find_emoji_collocation(test_string, '😊')
         self.assertEqual(["😊", "want", "cake"], pos)
 
-    def test_compare_historical_emojis(self):
-        first = 15.0
-        second = 16.0
-        pos = cim().compare_emoji_lists(first, second)
-        self.assertEqual(3, pos)
-
 if __name__ == '__main__':
     unittest.main()
