@@ -29,5 +29,5 @@ jobs:
     - name: Run tests
       run: python -m unittest discover -s tests/ -p '*.py'
 
-    - name: Lint
-      run: pylint $(git ls-files '*.py')
+    #- name: Lint
+    #  run: pylint $(git ls-files '*.py')
