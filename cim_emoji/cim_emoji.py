@@ -42,7 +42,6 @@ class CIMEmoji():
         list_of_words = text_string.split()
 
         if direction == "before":
-            #found=[m.start() for m in re.finditer(emojicode+'\s+\w+', 'test 😊 test 😊')]
             found = [list_of_words[k-1] for k in range(len(list_of_words)) \
                 if list_of_words[k] == emojicode]
         else:
