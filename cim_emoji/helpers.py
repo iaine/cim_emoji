@@ -1,41 +1,42 @@
+"""
+Helper functions for CIM Emoji. Download and caching code. 
+"""
 import json
+import pathlib
+import re
+import ssl
 import urllib.request
 from urllib.error import URLError, HTTPError
-import pathlib
-import os
-import re
-#fix context
-import ssl
-context = ssl._create_unverified_context()
 
 from .exception import CIMException
 
+context = ssl._create_unverified_context()
+
 class CIMEmojiHelpers():
+    """
+    Helper classes
+    """
 
-
-    URL = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
-
-    VERSION_URL="https://unicode.org/Public/emoji/{}/emoji-test.txt"
-
-#@todo: add exception for the version issue. 
     def __init__(self):
-        pass
+        self.url = "https://unicode.org/Public/emoji/latest/emoji-test.txt"
+        self.version_url="https://unicode.org/Public/emoji/{}/emoji-test.txt"
+        self.codes_cache = pathlib.Path(__file__).parent.parent.resolve() / "cim_emoji"
 
     def _get_codes(self):
         '''
         Helper to load into memory
         '''
-        codes_cache = pathlib.Path(__file__).parent.parent.resolve() / "cim_emoji"
-        with open(codes_cache / "codes.json", "r") as f:
+        with open(self.codes_cache / "codes.json", "r", encoding="utf-8") as f:
             return json.loads(f.read())
-        
+
     def _create_regex_string (self, codes):
+        '''
+        Creates the regex string for parsing later
+        '''
         escaped = (re.escape(c) for c in sorted(codes, key=len, reverse=True))
         return re.compile(r"|".join(escaped))
 
-    #download functions below
-
-    def parse_file(data, code):
+    def parse_file(self, data, code):
         '''
         Parse the incoming data
         '''
@@ -52,46 +53,56 @@ class CIMEmojiHelpers():
                 code[self.parse_unicode_sequence(codes)] = desc.replace("\n","")
         return code
 
-    def parse_unicode_sequence(string):
+    def parse_unicode_sequence(self, string):
+        """
+          Parse Unicode sequence.
+        """
         return "".join((chr(int(i.zfill(8), 16)) for i in string.split()))
 
 
-    def parse_unicode_range(string):
+    def parse_unicode_range(self, string):
+        """
+          Parse Unicode range.
+        """
         start, _, end = string.partition("..")
         start, end = map(lambda i: int(i.zfill(8), 16), (start, end))
         return (chr(i) for i in range(start, end + 1))
 
-    def _write_data (codes):
-        with open("./codes.json", "w") as f:
+    def _write_data (self, codes):
+        """
+          Parse Unicode sequence.
+        """
+        with open(self.codes_cache / "codes.json", "w", encoding="utf-8") as f:
             json.dump(codes, f, separators=(",", ":"))
 
-    def download(version="", store="true"):
+    def download(self, version="", store="true"):
         """
         Download the correct chart
         """
-        target_url = URL
+        target_url = self.url
         if version != "":
-            VERSION=version
-            target_url = VERSION_URL.format(VERSION)
+            target_url = self.version_url.format(version)
 
         code={}
+        openurl = None
         try:
             openurl = urllib.request.urlopen(target_url, context=context)
-        except URLError:
-            if version != "":
-                CIMException("{} could not be opened ".format(str(target_url)))
-            else:
-                CIMException(str(URLError))
         except HTTPError:
             if version != "":
-                CIMException("{} could not be opened {}".format(str(target_url), openurl.code))
+                CIMException(f"{str(target_url)} could not be opened {str(openurl.code)}")
             else:
                 CIMException(str(URLError))
+        except URLError:
+            if version != "":
+                CIMException(f"{str(target_url)} could not be opened ")
+            else:
+                CIMException(str(URLError))
+
 
         for line in openurl:
             code = self.parse_file(line.decode('utf-8'), code)
 
         if store:
-            _write_data(code)
+            self._write_data(code)
         else:
             return code
