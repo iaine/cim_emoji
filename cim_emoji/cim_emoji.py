@@ -54,6 +54,6 @@ class CIMEmoji():
         #first = CIMEmojiHelpers.download(version1)
         #second = CIMEmojiHelpers.download(version2)
 
-        shared_items = {k: first[k] for k in first if k in second and first[k] != second[k]}
+        #shared_items = {k: first[k] for k in first if k in second and first[k] != second[k]}
 
         return 3
