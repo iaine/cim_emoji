@@ -1,6 +1,7 @@
 import json
 import urllib.request
 from urllib.error import URLError, HTTPError
+import pathlib
 import os
 import re
 #fix context
