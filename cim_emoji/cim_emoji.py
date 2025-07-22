@@ -1,12 +1,12 @@
 '''
 Functions to read emoji
 '''
-import json
-import re
-
 from .helpers import CIMEmojiHelpers
 
 class CIMEmoji():
+    '''
+       Functions to work with Emojis and text
+    '''
 
     def __init__(self):
         cim = CIMEmojiHelpers()
@@ -24,13 +24,15 @@ class CIMEmoji():
         '''
         Find emoji by code in string
         '''
-        return {f: self.codes[f] for f in set(self.patterns.findall(text_string)) if f == emojicode}
+        return {f: self.codes[f] for f in set(self.patterns.findall(text_string)) \
+            if f == emojicode}
 
     def find_single_emoji_pattern (self, text_string, emojicode):
         '''
         Find emoji by pattern in string
         '''
-        return {f: self.codes[f] for f in set(self.patterns.findall(text_string)) if self.codes[f] == emojicode}
+        return {f: self.codes[f] for f in set(self.patterns.findall(text_string)) \
+            if self.codes[f] == emojicode}
 
     def find_emoji_collocation (self, text_string, emojicode, direction="after"):
         '''
@@ -41,12 +43,14 @@ class CIMEmoji():
 
         if direction == "before":
             #found=[m.start() for m in re.finditer(emojicode+'\s+\w+', 'test 😊 test 😊')]
-            found = [list_of_words[k-1] for k in range(len(list_of_words)) if list_of_words[k] == emojicode]
+            found = [list_of_words[k-1] for k in range(len(list_of_words)) \
+                if list_of_words[k] == emojicode]
         else:
-            found = [list_of_words[k+1] for k in range(len(list_of_words)) if list_of_words[k] == emojicode]
+            found = [list_of_words[k+1] for k in range(len(list_of_words)) \
+                if list_of_words[k] == emojicode]
 
         return found
-    
+
     def compare_emoji_lists(self, version1, version2):
         '''
             Comparing lists of emojis
