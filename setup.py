@@ -10,4 +10,6 @@ setup(name='cim_emoji',
       url='',
       data_files=[('.', ['cim_emoji/codes.json'])],
       packages=['cim_emoji'],
+      package_dir={'cim_emoji': 'cim_emoji'},
+      package_data={'cim_emoji': ['*.json']},
      )
