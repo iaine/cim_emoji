@@ -10,7 +10,6 @@ include = [
 [project]
 name = "cim_emoji"
 version = "0.1"
-dynamic = ["version"]
 
 authors = [
   {name = "Iain Emsley", email = "iain.emsley@warwick.ac.uk"},
