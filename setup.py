@@ -8,6 +8,6 @@ setup(name='cim_emoji',
       author='Iain Emsley',
       author_email='iain.emsley@warwick.ac.uk',
       url='',
-      data_files=[("cim_emoji", ['codes.json']),]
+      data_files=[('cim_emoji', ['codes.json']),]
       packages=['cim_emoji'],
      )
