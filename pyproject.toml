@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+  "/cim_emoji/*.json",
+]
+
+[project]
+name = "cim_emoji"
+version = "0.1"
+dynamic = ["version"]
+
+authors = [
+  {name = "Iain Emsley", email = "iain.emsley@warwick.ac.uk"},
+]
+maintainers = [
+  {name = "Iain Emsley", email = "iain.emsley@warwick.ac.uk"}
+]
+description = "Package to find text associated with emojis"
+readme = "README.md"
+
+keywords = ["emojis", "text mining"]
+
+classifiers = [
+  # How mature is this project? Common values are
+  #   3 - Alpha
+  #   4 - Beta
+  #   5 - Production/Stable
+  "Development Status :: 3 - Alpha",
+
+  # Indicate who your project is intended for
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Build Tools",
+
+  # Specify the Python versions you support here.
+  #"Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+]
+
+[project.urls]
+Homepage = "https://github.com/iaine/cim_emoji"
+Documentation = "https://iaine.github.io/cim_emoji/"
+Repository = "https://github.com/iaine/cim_emoji.git"
+Issues = "https://github.com/iaine/cim_emoji/issues"
+#Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
